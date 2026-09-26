@@ -1,0 +1,39 @@
+---
+
+- hosts: all
+  become: true
+  pre_tasks:
+
+  - name: install updates (centOS)
+    tags: always
+    dnf:
+      update_only: yes
+      update_cache: yes
+    when: ansible_facts.distribution == "CentOS"
+
+- hosts: web_servers
+  become: true
+  tasks:
+
+  - name: install apache and php packages for Ubuntu servers
+    tags: apacheTag, phpTag
+    apt: 
+      name:
+        - apache2
+        - libapache2-mod-php
+      state: latest
+      update_cache: yes
+    when: ansible_facts.distribution in ["Ubuntu", "Debian"] # Not needed anymore
+
+- hosts: fun_servers
+  become: true
+  tasks:
+ 
+  - name: install oneko kitty
+    tags: oneko
+    apt:
+      name:
+        - oneko
+      state: latest
+      update_cache: yes
+    when: ansible_facts.distribution in "Ubuntu" 
