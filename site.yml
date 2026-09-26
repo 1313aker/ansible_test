@@ -25,6 +25,15 @@
       update_cache: yes
     when: ansible_facts.distribution in ["Ubuntu", "Debian"] # Not needed anymore
 
+  - name: copy default html file for the site
+    tags: apache, phpTag
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
+
 - hosts: fun_servers
   become: true
   tasks:
