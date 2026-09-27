@@ -1,4 +1,8 @@
 [web_servers] # Can group servers like this - I only have one server currently
 192.168.10.20
+
 [fun_servers]
+192.168.10.20
+
+[workstations]
 192.168.10.20
