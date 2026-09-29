@@ -1,0 +1,6 @@
+---
+- name: Deploy Production test servers
+  hosts: testServers
+  become: yes
+  roles:
+    - test

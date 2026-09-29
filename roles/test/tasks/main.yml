@@ -1,0 +1,15 @@
+# tasks file for test
+---
+- name: copy the httpd config file
+  ansible.builtin.copy:
+    src: apache2.conf
+    dest: /etc/apache2/
+  notify: Restart httpd
+
+- name: Allow web traffic
+  ansible.builtin.ufw:
+    rule: allow
+    port: "{{ testserver_port }}"
+    proto: tcp
+  changed_when: true
+  notify: Reload Firewall

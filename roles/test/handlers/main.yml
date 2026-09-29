@@ -1,0 +1,16 @@
+---
+- name: Restart httpd
+  ansible.builtin.systemd:
+    name: apache2
+    state: restarted
+
+- name: Reload Firewall
+  ansible.builtin.ufw:
+    state: reloaded
+  register: firewall_output
+  notify: Show Firewall Output
+
+- name: Show Firewall Output
+  ansible.builtin.debug:
+    msg:
+      "Message: {{ firewall_output.msg }}"

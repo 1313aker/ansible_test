@@ -6,3 +6,6 @@
 
 [workstations]
 192.168.10.20
+
+[testServers]
+192.168.10.20
